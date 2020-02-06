@@ -1,25 +1,22 @@
 package streams;
 
-import java.util.Arrays;
-import java.util.List;
+import data.ProjectData;
 
 public class ThreadedStreams {
 
-	private final static List<String> words =
-			Arrays.asList("This", "is", "my", "first", "streams", "test", "I", "am", "Santi", "Barbat");
-	
 	public static void main(String[] args) {
 		
-		// Paralell Stream
+		// Parallel Stream
 		(new Thread(() -> {
-			words.parallelStream()
+			ProjectData.WORDS.parallelStream()
 				.forEach((s) -> { System.out.println(s); });
 		})).start();
 
 		// Async Stream
 		(new Thread(() -> {
-			words.stream()
+			ProjectData.WORDS.stream()
 				.forEach((s) -> { System.out.println(s); });
 		})).start();
 	}
+	
 }
